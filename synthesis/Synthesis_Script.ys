@@ -1,5 +1,5 @@
 # Read RTL
-read_verilog ../rtl/neuron.v
+read_verilog neuron.v
 
 # Specify top module
 hierarchy -check -top neuron
@@ -23,10 +23,8 @@ techmap
 opt
 
 # Map flip-flops and logic to SKY130 cells
-dfflibmap -liberty /home/aadi_agarwal/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-
-abc -liberty /home/aadi_agarwal/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-
+dfflibmap -liberty (Path to the tech library in the directory)
+abc -liberty (Path to the tech library in the directory)
 # Remove unused cells and wires
 clean
 
