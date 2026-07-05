@@ -203,18 +203,18 @@ Inputs:
 | Input | Value |
 |-------|------|
 | x0 | 1 |
-| x1 | 2 |
-| x2 | 3 |
-| x3 | 4 |
+| x1 | 3 |
+| x2 | -2 |
+| x3 | 1 |
 
 Weights:
 
 | Weight | Value |
 |--------|------|
-| w0 | 2 |
-| w1 | 1 |
-| w2 | -1 |
-| w3 | 3 |
+| w0 | -3 |
+| w1 | -1 |
+| w2 | -3 |
+| w3 | 1 |
 
 Bias:
 
@@ -225,14 +225,14 @@ Bias:
 Expected Result:
 
 ```
-1×2 + 2×1 + 3×(-1) + 4×3 + 1
-= 14
+1×(-3) + 3×(-1) + (-3)×(-2) + 1×1 + 1
+= 2
 ```
 
 Output:
 
 ```
-14
+2
 ```
 
 Simulation PASSED.
@@ -250,7 +250,7 @@ Synthesis was performed using:
 Commands:
 
 ```bash
-yosys -s synthesis/Synthesis_Script.ys
+yosys -s synthesis/Synthesis_Script.tcl
 ```
 
 Generated Outputs:
@@ -332,7 +332,6 @@ This is the classic MAC feedback path commonly seen in AI accelerators.
 │   └── Testbench.v
 │
 ├── synthesis/
-│   ├── neuron_map.v
 │   └── Synthesis_Script.ys
 │
 ├── sta/
@@ -384,6 +383,7 @@ sta sta/STA_script.tcl
 - On-chip weight memory
 - Multi-layer perceptron implementation
 - FPGA implementation on Spartan-7
+- During STA, Ideal Clock was considered, Some uncertainties, jitter and skew can be introduced
 
 ---
 
